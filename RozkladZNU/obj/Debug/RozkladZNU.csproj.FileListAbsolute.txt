@@ -1,0 +1,10 @@
+c:\users\asus\documents\visual studio 2012\Projects\RozkladZNU\RozkladZNU\bin\Debug\RozkladZNU.exe.config
+c:\users\asus\documents\visual studio 2012\Projects\RozkladZNU\RozkladZNU\bin\Debug\RozkladZNU.exe
+c:\users\asus\documents\visual studio 2012\Projects\RozkladZNU\RozkladZNU\bin\Debug\RozkladZNU.pdb
+c:\users\asus\documents\visual studio 2012\Projects\RozkladZNU\RozkladZNU\obj\Debug\RozkladZNU.csprojResolveAssemblyReference.cache
+c:\users\asus\documents\visual studio 2012\Projects\RozkladZNU\RozkladZNU\obj\Debug\RozkladZNU.Form1.resources
+c:\users\asus\documents\visual studio 2012\Projects\RozkladZNU\RozkladZNU\obj\Debug\RozkladZNU.Properties.Resources.resources
+c:\users\asus\documents\visual studio 2012\Projects\RozkladZNU\RozkladZNU\obj\Debug\RozkladZNU.csproj.GenerateResource.Cache
+c:\users\asus\documents\visual studio 2012\Projects\RozkladZNU\RozkladZNU\obj\Debug\RozkladZNU.exe
+c:\users\asus\documents\visual studio 2012\Projects\RozkladZNU\RozkladZNU\obj\Debug\RozkladZNU.pdb
+c:\users\asus\documents\visual studio 2012\Projects\RozkladZNU\RozkladZNU\bin\Debug\Newtonsoft.Json.dll
