@@ -12,7 +12,7 @@ namespace RozkladZNU
     {
         public string name { get; set; }
         public int id { get; set; }
-        public int last_update { get; set; }
+        public string last_update { get; set; }
     }
 
     public class Departments

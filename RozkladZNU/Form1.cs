@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Net;
 using System.Web;
@@ -25,6 +26,7 @@ namespace RozkladZNU
         private int selectedDepartmentId = -1;
         private int selectedGroupId = -1;
 
+        private int plusFormWidth = 300;
 
         public bool isDepartmentSync = false;
         public bool isGroupSync = false;
@@ -38,23 +40,49 @@ namespace RozkladZNU
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string result = GetRequestResult(apiRequestLink);
-            
-            departmentObjects = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<Departments>(result);
-            foreach (var item in departmentObjects.objects)
-            {
-                departmentsList.Items.Add(item.name);
-            }
-            isDepartmentSync = true;
+            stepsElement.Enabled = false;
+            /*
+             * Get all information from all available api links
+            */
 
-            result = GetRequestResult("http://rozkladznu.pp.ua/api/v1/group/?format=json");
-            groupObjects = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<Groups>(result);
-            isGroupSync = true;
-
+            Task task = new Task(GetAllApi);
+            task.Start();
         }
 
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            /*
+            GetAllApi();
+            stepsElement.Enabled = true;
+            */
+        }
+
+        private void GetAllApi()
+        {
+            try
+            {
+                string result = GetRequestResult(apiRequestLink);
+
+                departmentObjects = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<Departments>(result);
+                foreach (var item in departmentObjects.objects)
+                {
+                    departmentsList.Items.Add(item.name);
+                }
+                isDepartmentSync = true;
+
+                apiRequestLink = "http://rozkladznu.pp.ua/api/v1/group/?format=json";
+                result = GetRequestResult(apiRequestLink);
+                groupObjects = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<Groups>(result);
+                isGroupSync = true;
 
 
+                stepsElement.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.ToString());
+            }
+        }
 
         public string GetRequestResult()
         {
@@ -146,6 +174,52 @@ namespace RozkladZNU
                 }
             }
 
+        }
+
+        private void rozkladTab_Enter(object sender, EventArgs e)
+        {
+            if (selectedGroupId != -1)
+            {
+                Form1.ActiveForm.Size = new Size(Form1.ActiveForm.Size.Width + plusFormWidth, Form1.ActiveForm.Size.Height);
+                foreach (var item in groupObjects.objects)
+                {
+                    if (item.id == selectedGroupId)
+                    {
+                        rozkladTab.Text += " " + item.name;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Exception: Щось трапилось. Спробуйте знаново обрати групу.");
+            }
+        }
+
+        private void groupList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedGroupId = GetGroupIdByName(groupList.SelectedItem.ToString());
+        }
+        public int GetGroupIdByName(string name)
+        {
+            if (isDepartmentSync)
+            {
+                foreach (var item in groupObjects.objects)
+                {
+                    if (item.name == name)
+                    {
+                        return item.id;
+                    }
+                }
+                MessageBox.Show("Exception:" + " не знайшов ключ факультету в данних які мені доступні.");
+            }
+            return -1;
+        }
+
+        private void rozkladTab_Leave(object sender, EventArgs e)
+        {
+            Form1.ActiveForm.Size = new Size(Form1.ActiveForm.Size.Width - plusFormWidth, Form1.ActiveForm.Size.Height);
+            rozkladTab.Text = "Розклад";
         }
     }
 }

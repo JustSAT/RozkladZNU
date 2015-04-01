@@ -11,7 +11,7 @@ namespace RozkladZNU
     public class UniverTeacher
     {
         public int id { get; set; }
-        public int last_update { get; set; }
+        public string last_update { get; set; }
         public string name { get; set; }
     }
 

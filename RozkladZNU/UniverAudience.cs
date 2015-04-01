@@ -13,7 +13,7 @@ namespace RozkladZNU
     {
         public string audience { get; set; }
         public int campus_id { get; set; }
-        public int last_update { get; set; }
+        public string last_update { get; set; }
     }
     public class Audiences
     {

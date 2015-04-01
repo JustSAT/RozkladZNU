@@ -12,7 +12,7 @@ namespace RozkladZNU
     public class UniverCampus
     {
         public int id { get; set; }
-        public int last_update { get; set; }
+        public string last_update { get; set; }
         public double latitude { get; set; }
         public double longitude { get; set; }
         public string name { get; set; }

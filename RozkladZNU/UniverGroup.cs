@@ -12,7 +12,7 @@ namespace RozkladZNU
         public int course { get; set; }
         public int department_id { get; set; }
         public int id { get; set; }
-        public int last_update { get; set; }
+        public string last_update { get; set; }
         public string name { get; set; }
         public int subgroup_count { get; set; }
     }

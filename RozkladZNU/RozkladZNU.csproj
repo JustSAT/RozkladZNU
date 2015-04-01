@@ -57,8 +57,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UniverAudience.cs" />
+    <Compile Include="UniverCampus.cs" />
+    <Compile Include="UniverCurrentWeek.cs" />
     <Compile Include="UniverDepartment.cs" />
     <Compile Include="UniverGroup.cs" />
+    <Compile Include="UniverLesson.cs" />
+    <Compile Include="UniverTeacher.cs" />
+    <Compile Include="UniverTime.cs" />
+    <Compile Include="UniverTimetable.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
